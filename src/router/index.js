@@ -16,29 +16,36 @@ const history = createHashHistory()
 const router = [
     {
         path: '/',
+        redirect: '/home/weather',
+        exact: true,
+        title: '妖道',
+        component: Home,
+    },
+    {
+        path: '/home',
         component: Home,
         exact: true,
         title: '妖道',
         children: [
             {
-                path: '/weather',
+                path: '/home/weather',
                 component: Weather,
                 title: '天气预报'
             },
             {
-                path: '/news',
+                path: '/home/news',
                 component: News,
                 title: '新闻快讯'
             },
             {
-                path: '/utils/question',
+                path: '/home/utils/question',
                 component: Question,
-                title: '快递查询'
+                title: '驾照题库'
             },
             {
-                path: '/utils/qr',
+                path: '/home/utils/qr',
                 component: QR,
-                title: '老黄历'
+                title: '生成二维码'
             }
         ]
     },

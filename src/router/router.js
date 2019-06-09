@@ -23,6 +23,9 @@ export default function renderRoutes (route) {
                         }} />
                     } else {
                         return <Route key={i} exact path={v.path} render={(props) => {
+                            if (v.redirect) {
+                                return <Redirect to={v.redirect} />
+                            }
                             document.title = v.title || '妖道'
                             console.log(v.redirect)
                             return <v.component />

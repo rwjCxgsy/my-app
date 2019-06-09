@@ -62,11 +62,11 @@ class Home extends Component {
                                 mode="inline"
                                 onClick={this.jump.bind(this)}
                                 theme="light">
-                                <Menu.Item key="1" path="/weather">
+                                <Menu.Item key="1" path="/home/weather">
                                     <Icon type="pie-chart" />
                                     <span>天气预报</span>
                                 </Menu.Item>
-                                <Menu.Item key="3" path="/news">
+                                <Menu.Item key="3" path="/home/news">
                                     <Icon type="inbox" />
                                     <span>新闻</span>
                                 </Menu.Item>
@@ -78,8 +78,8 @@ class Home extends Component {
                                         <span>工具集</span>
                                     </span>
                                     }>
-                                    <Menu.Item key="5" path="/utils/question">驾照题库</Menu.Item>
-                                    <Menu.Item key="6" path="/utils/qr">生成二维码</Menu.Item>
+                                    <Menu.Item key="5" path="/home/utils/question">驾照题库</Menu.Item>
+                                    <Menu.Item key="6" path="/home/utils/qr">生成二维码</Menu.Item>
                                 </SubMenu>
                             </Menu>
                         </Sider>
