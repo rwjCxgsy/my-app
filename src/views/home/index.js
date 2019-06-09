@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {withRouter} from "react-router-dom";
 import styles from './index.module.less'
-import {Layout, Row, Col, Avatar, Menu, Icon} from 'antd'
+import {Layout, Row, Col, Avatar, Menu, Icon, Input, message} from 'antd'
 import {createHashHistory} from 'history'
 const { SubMenu }  = Menu;
 const { Header, Footer, Sider, Content } = Layout;
+
+const Search = Input.Search;
 
 const typeColor = {
     1: 'red',
@@ -14,14 +16,6 @@ const typeColor = {
 let type = 1
 
 class Home extends Component {
-    
-    // eslint-disable-next-line no-useless-constructor
-    // constructor (props, context) {
-    //     super(props, context);
-    //     this.state = {
-    //         collapsed: false,
-    //     }
-    // }
     state = {
         collapsed: false,
     }
@@ -39,11 +33,19 @@ class Home extends Component {
                 }}>
                     <Header className={styles.header}>
                         <Row gutter={24}>
-                            <Col span={4} >
+                            <Col span={3} >
                                 <h2>妖道</h2>
                             </Col>
-                            <Col span={16} />
-                            <Col span={4} >
+                            <Col span={7} className={styles.search}>
+                                <Search
+                                    placeholder=""
+                                    enterButton="百度一下"
+                                    size="large"
+                                    onSearch={this.searchHandle.bind(this)}
+                                />
+                            </Col>
+                            <Col span={11} />
+                            <Col span={3} >
                                 {
                                     type === 1 ? 
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -94,6 +96,14 @@ class Home extends Component {
         console.log(item)
         createHashHistory().replace(path)
         // history.replace(path)
+    }
+
+    searchHandle = (text) => {
+        if (!text.trim()) {
+            message.warn('请输入关键字')
+            return false
+        }
+        window.open(`https://www.baidu.com/s?word=${encodeURIComponent(text)}`)
     }
 }
 

@@ -20,7 +20,7 @@ const router = [
         children: [
             {
                 path: '/',
-                component: News,
+                component: Weather,
                 title: '天气预报'
             },
             {
