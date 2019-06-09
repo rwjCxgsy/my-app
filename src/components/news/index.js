@@ -72,7 +72,7 @@ export default class News extends Component {
         )
     }
     callback = (key) => {
-        console.log(key);
+        this.initData(key)
     }
 
     getData = (url) => {
