@@ -27,13 +27,20 @@ export default class QR extends Component {
                         <div>
                             <img src={url} alt="二维码"/>
                         </div>
-                        <Button type="primary" shape="round" icon="download" size='large'>
-                            下载
+                        <Button type="primary" shape="round" icon="download" size='large' onClick={this.download.bind(this)}>
+                            点击下载
                         </Button>
                     </section>
                 </div>
             </div>
         )
+    }
+
+    download = () => {
+        const a = document.createElement('a')
+        a.href = this.state.url
+        a.download = "qrcode"
+        a.click()
     }
 
     generateQR = () => {
