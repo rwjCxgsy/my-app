@@ -66,7 +66,7 @@ class Home extends Component {
                                     <Icon type="pie-chart" />
                                     <span>天气预报</span>
                                 </Menu.Item>
-                                <Menu.Item key="3" path="/new">
+                                <Menu.Item key="3" path="/news">
                                     <Icon type="inbox" />
                                     <span>新闻</span>
                                 </Menu.Item>
@@ -78,8 +78,8 @@ class Home extends Component {
                                         <span>工具集</span>
                                     </span>
                                     }>
-                                    <Menu.Item key="5">快递</Menu.Item>
-                                    <Menu.Item key="6">老黄历</Menu.Item>
+                                    <Menu.Item key="5" path="/utils/question">驾照题库</Menu.Item>
+                                    <Menu.Item key="6" path="/utils/qr">生成二维码</Menu.Item>
                                 </SubMenu>
                             </Menu>
                         </Sider>

@@ -12,7 +12,7 @@ export default function renderRoutes (route) {
             {
                 route.map((v, i) => {
                     if (v.children) {
-                        return <Route key={i} exact path={v.path} render={() => {
+                        return <Route key={i} path={v.path} render={() => {
                             return (
                                 <v.component>
                                     {

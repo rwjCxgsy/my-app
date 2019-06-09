@@ -8,6 +8,8 @@ import Login from '../views/login'
 
 import Weather from '../components/weather'
 import News from '../components/news'
+import Question from '../components/question'
+import QR from '../components/qr'
 
 const history = createHashHistory()
 
@@ -19,7 +21,7 @@ const router = [
         title: '妖道',
         children: [
             {
-                path: '/',
+                path: '/weather',
                 component: Weather,
                 title: '天气预报'
             },
@@ -27,6 +29,16 @@ const router = [
                 path: '/news',
                 component: News,
                 title: '新闻快讯'
+            },
+            {
+                path: '/utils/question',
+                component: Question,
+                title: '快递查询'
+            },
+            {
+                path: '/utils/qr',
+                component: QR,
+                title: '老黄历'
             }
         ]
     },
