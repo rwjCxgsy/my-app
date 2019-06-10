@@ -56,7 +56,7 @@ export default class News extends Component {
       const {list} = this.state
         return ( 
             <div className={styles.news}>
-                <Tabs defaultActiveKey={'0'} className={styles.tabs} onChange={this.callback.bind(this)}>
+                <Tabs defaultActiveKey={'top'} className={styles.tabs} onChange={this.callback.bind(this)}>
                     {
                         newsType.map((v, i) => {
                             return (
