@@ -32,3 +32,7 @@ code {
 .ant-tabs-bar,.ant-tabs-top-bar {
   margin-bottom: 0 !important;
 }
+
+* {
+  box-sizing: border-box;
+}

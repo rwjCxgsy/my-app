@@ -2,11 +2,7 @@ import React, {Component} from 'react'
 import styles from './radio.module.less'
 import { Radio, Alert, Button, message } from 'antd';
 
-export default class XRadio extends Component {
-    state = {
-        value: '',
-        isClick: false
-    }
+class XRadio extends Component {
     render () {
         const radioStyle = {
             display: 'block',
@@ -17,13 +13,17 @@ export default class XRadio extends Component {
             return Object.keys(questionInfo).filter(v => v.indexOf('item') !== -1)
         }
         const {radioInfo} = this.props
-        const {isClick, value} = this.state
+        const {onIsClick, onSelected} = this.props
         return ( 
             <div className={styles.xradio}>
                 <strong>{radioInfo.question}</strong>
                 <div className={styles['radio-group']}>
                     <div className={styles.left}>
-                        <Radio.Group onChange={this.onChange.bind(this)} value={this.state.value}>
+                        <Radio.Group
+                            disabled={radioInfo.value && radioInfo.isClick}
+                        onChange={(e) => {
+                            onSelected(radioInfo.id, e.target.value)
+                        }} value={radioInfo.value}>
                             {
                                 setItem(radioInfo).map((item, index) => {
                                     return (
@@ -35,57 +35,32 @@ export default class XRadio extends Component {
                         {radioInfo.url ? <img src={radioInfo.url} alt={radioInfo.explains}/> : ''}
                     </div>
                     <div className={styles.right}>
-                        <Button type="primary" disabled={isClick} size={'large'} onClick={this.look.bind(this)}>揭晓答案</Button>
+                        <Button type="primary" disabled={radioInfo.isClick} size={'large'} onClick={() => {
+                            if (!radioInfo.value) {
+                                message.warn('你还没有选择答案呢')
+                                return
+                            }
+                            onIsClick(radioInfo.id)
+                        }}>揭晓答案</Button>
                     </div>
                 </div>
                 {
-                    !isClick ? '' :
+                    !radioInfo.isClick ? '' :
                     <div className={styles.explains}>
-                        <Alert message={radioInfo.explains} type={value === 'item' + radioInfo.answer ? 'success' : 'error'} />
+                        {radioInfo.value === 'item' + radioInfo.answer ? <strong>正确</strong> : <strong>错误</strong>}
+                        <Alert message={radioInfo.explains} type={radioInfo.value === 'item' + radioInfo.answer ? 'success' : 'error'} />
                     </div>
                 }
             </div>
         )
     }
-
-    look = (e) => {
-        if (!this.state.value) {
-            message.warn('选择后才能揭晓答案')
-            return false
-        }
-        this.setState({
-            ...this.state,
-            isClick: true
-        })
-        const {radioInfo} = this.props
-        const question = JSON.parse(localStorage.question)
-        for (const iterator of question) {
-            if (iterator.id === radioInfo.id) {
-                iterator.isClick = true
-            }
-        }
-        localStorage.question = JSON.stringify(question)
+    componentWillReceiveProps (nextProps) {
+        console.log(nextProps)
     }
-
-    onChange = (e) => {
-        this.setState({
-            value: e.target.value,
-        });
-
-        const {radioInfo} = this.props
-        const question = JSON.parse(localStorage.question)
-        for (const iterator of question) {
-            if (iterator.id === radioInfo.id) {
-                iterator.value = e.target.value
-            }
-        }
-        localStorage.question = JSON.stringify(question)
-    }
-
-    componentWillMount () {
-        this.setState({
-            isClick: this.props.isClick,
-            value: this.props.value
-        })
+    componentWillUpdate () {
+        console.log('改变了')
     }
 }
+
+
+export default XRadio
