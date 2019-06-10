@@ -47,7 +47,7 @@ class XRadio extends Component {
                 {
                     !radioInfo.isClick ? '' :
                     <div className={styles.explains}>
-                        {radioInfo.value === 'item' + radioInfo.answer ? <strong>正确</strong> : <strong>错误</strong>}
+                        {radioInfo.value === 'item' + radioInfo.answer ? <strong>正确</strong> : <strong>错误！正确答案：{['A', 'B', 'C', 'D', 'E'][radioInfo.answer.match(/\d/)[0] - 1]}</strong>}
                         <Alert message={radioInfo.explains} type={radioInfo.value === 'item' + radioInfo.answer ? 'success' : 'error'} />
                     </div>
                 }
