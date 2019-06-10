@@ -6,35 +6,40 @@ function resolve(dir) {
 }
 console.log('使用新编译')
 
-module.exports = override(
-    addWebpackAlias({
-        '@': resolve('src')
-    }),
-    fixBabelImports('import', {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-    }),
-    addLessLoader({
-        javascriptEnabled: true,
-        modifyVars: { '@primary-color': '#1A73E8' },
-        localIdentName: '[local]--[hash:base64:5]'
-    }),
-    addPostcssPlugins([
-        require('autoprefixer')({
-            flexbox: true
+const publicPath = () => config => {
+    console.log('当前路劲', config.output.publicPath)
+    config.output.publicPath = './'
+    return config
+}
+
+module.exports = {
+    webpack: override(
+        addWebpackAlias({
+            '@': resolve('src')
         }),
-        require('postcss-preset-env'),
-        require("postcss-write-svg"),
-        require('postcss-cssnext')({
-            mainColor: "#1A73E8",
-            altColor: "red"
+        fixBabelImports('import', {
+            libraryName: 'antd',
+            libraryDirectory: 'es',
+            style: true,
         }),
-        require('postcss-import'),
-        require('postcss-url'),
-    ]),
-    () => config => {
-        config.output.publicPath = './'
-        return config
-    }
-);
+        addLessLoader({
+            javascriptEnabled: true,
+            modifyVars: { '@primary-color': '#1A73E8' },
+            localIdentName: '[local]--[hash:base64:5]'
+        }),
+        addPostcssPlugins([
+            // require('autoprefixer')({
+            //     flexbox: true
+            // }),
+            require('postcss-preset-env'),
+            require("postcss-write-svg"),
+            require('postcss-cssnext')({
+                mainColor: "#1A73E8",
+                altColor: "red"
+            }),
+            require('postcss-import'),
+            require('postcss-url'),
+        ]),
+        publicPath()
+    )
+}
