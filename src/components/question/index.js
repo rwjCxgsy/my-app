@@ -19,6 +19,7 @@ class Question extends Component {
         console.log('更新了')
         current = current - 1
         const showQuestion = []
+        
         questionList.forEach((v, i) => {
             if (i >= current * pageSize && i < (current + 1) * pageSize) {
                 showQuestion.push(<XRadio onSelected={selected}  onIsClick={isClick} radioInfo={v} key={'jz_' + i} index={i}/>)
