@@ -33,4 +33,8 @@ module.exports = override(
         require('postcss-import'),
         require('postcss-url'),
     ]),
+    () => config => {
+        config.output.publicPath = './'
+        return config
+    }
 );
