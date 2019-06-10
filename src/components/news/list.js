@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import className from 'classnames'
 
 import styles from './list.module.less'
 
@@ -9,7 +10,10 @@ export default class List extends Component {
             <>
                 {
                     list.map((v, i) => {
-                        return <div className={styles.list} key={i}>
+                        return <div className={className({
+                            [styles.list]: true,
+                            [styles['no-data']]: v === 0
+                        })} key={i}>
                             <section>
                                 <div className={styles.imgs}>
                                     <img src={v.thumbnail_pic_s} alt=""/>

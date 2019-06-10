@@ -72,6 +72,9 @@ export default class News extends Component {
         )
     }
     callback = (key) => {
+        this.setState({
+          list: new Array(30).fill(0)
+        })
         this.initData(key)
     }
 

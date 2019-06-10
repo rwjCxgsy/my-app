@@ -21,6 +21,7 @@
         padding-top: 130%;
     }
     section {
+        padding: 10px;
         display: block;
         color: #333;
         overflow: hidden;
@@ -31,13 +32,16 @@
         width: 100%;
         height: 100%;
         a {
-            padding: 16px;
+            min-height: 40px;
+            margin-top: 20px;
+            padding: 0 20px;
             display: block;
             margin-bottom: 16px;
             line-height: 20px;
             font-size: 18px;
         }
         .imgs {
+            min-height: 58%;
             img {
                 display: block;
                 height: 100%;
@@ -46,10 +50,11 @@
             }
         }
         cite {
+            min-width: 100px;
+            min-height: 16px;
             position: absolute;
-            bottom: 40px;
-            left: 0;
-            padding: 0 20px;
+            bottom: 50px;
+            left: 20px;
             font-size: 14px;
             font-style: normal;
             color: #0D652D;
@@ -57,12 +62,16 @@
         }
         span {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 0 20px 20px;
+            min-width: 100px;
+            min-height: 16px;
+            bottom: 20px;
+            left: 20px;
             color: #aaa;
             font-size: 12px;
             display: block;
         }
+    }
+    &.no-data section * {
+        background-color: #eee;
     }
 }
