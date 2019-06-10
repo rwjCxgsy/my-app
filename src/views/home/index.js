@@ -8,10 +8,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Search = Input.Search;
 
-const typeColor = {
-    1: 'red',
-    0: 'black'
-}
+// const typeColor = {
+//     1: 'red',
+//     0: 'black'
+// }
 
 let type = 1
 

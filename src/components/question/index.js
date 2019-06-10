@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styles from './index.module.less'
-import { Pagination, BackTop} from 'antd';
+import { Pagination} from 'antd';
 import XRadio from './radio'
 import {connect} from 'react-redux'
 
@@ -83,7 +83,7 @@ class Question extends Component {
         // }
         const d = await fetch(`http://47.102.114.90/api/jztk/query?subject=1&model=c1&testType=&=&key=9dfec6241e5d1f579010fa9fecf7d393`)
         const json = await d.json()
-        const {result, error_code, reason} = json
+        const {result, error_code} = json
         if (error_code) {
             return
         }
