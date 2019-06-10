@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import styles from './index.module.less'
 
-import { Tabs } from 'antd';
+import { Tabs, message } from 'antd';
 import List from './list'
 const { TabPane } = Tabs;
 
@@ -85,9 +85,14 @@ export default class News extends Component {
     async initData (type = 'toutiao') {
       const d = await this.getData(`http://47.102.114.90/api/toutiao/index?type=${type}&key=4b4fbad0b071dd8654ec37ac1f831df3`)
       const _json = await d.json()
-      const {data} = _json.result
+      const {result, reason} = _json
+      console.log(result, reason)
+      if (reason) {
+        message.warn(reason)
+        return false
+      }
       this.setState({
-        list: data
+        list: result.data
       })
     }
   
