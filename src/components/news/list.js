@@ -13,7 +13,13 @@ export default class List extends Component {
                         return <div className={className({
                             [styles.list]: true,
                             [styles['no-data']]: v === 0
-                        })} key={i}>
+                        })} 
+                        ref={e => {
+                            if (window.innerWidth < 1600) {
+                                e && (e.style.width = '23%')
+                            }
+                        }}
+                        key={i}>
                             <section>
                                 <div className={styles.imgs}>
                                     <img src={v.thumbnail_pic_s} alt=""/>
@@ -27,5 +33,14 @@ export default class List extends Component {
                 }
             </>
         )
+    }
+
+    componentDidMount () {
+        window.addEventListener('resize', () => {
+            const list = document.getElementsByClassName(styles.list)
+            Array.prototype.forEach.call(list, (e) => {
+                e.style.width = window.innerWidth < 1600 ? '23%' : '18%'
+            })
+        })
     }
 }

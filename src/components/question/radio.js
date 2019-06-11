@@ -10,7 +10,7 @@ class XRadio extends Component {
             lineHeight: '30px',
         };
         const setItem = (questionInfo) => {
-            return Object.keys(questionInfo).filter(v => v.indexOf('item') !== -1)
+            return Object.keys(questionInfo).filter(v => v.indexOf('item') !== -1 && questionInfo[v])
         }
         const {radioInfo} = this.props
         const {onIsClick, onSelected} = this.props
@@ -25,14 +25,13 @@ class XRadio extends Component {
                             onSelected(radioInfo.id, e.target.value)
                         }} value={radioInfo.value}>
                             {
-                                setItem(radioInfo).map((item, index) => {
+                                setItem(radioInfo).map((item, index, array) => {
                                     return (
-                                        <Radio style={radioStyle} key={index} value={item}>{["A", "B", "C", "D"][index]}: {radioInfo[item]}</Radio>
+                                        <Radio style={radioStyle} key={index} value={item}>{["A", "B", "C", "D"].slice(0, array.length)[index]}: {radioInfo[item]}</Radio>
                                     )
                                 })
                             }
                         </Radio.Group>
-                        {radioInfo.url ? <img src={radioInfo.url} alt={radioInfo.explains}/> : ''}
                     </div>
                     <div className={styles.right}>
                         <Button type="primary" disabled={radioInfo.isClick} size={'large'} onClick={() => {
@@ -43,6 +42,9 @@ class XRadio extends Component {
                             onIsClick(radioInfo.id)
                         }}>揭晓答案</Button>
                     </div>
+                </div>
+                <div className={styles.img}>
+                    {radioInfo.url ? <img src={radioInfo.url} alt={radioInfo.explains}/> : ''}
                 </div>
                 {
                     !radioInfo.isClick ? '' :
