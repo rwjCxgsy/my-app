@@ -15,7 +15,7 @@ export default class List extends Component {
                             [styles['no-data']]: v === 0
                         })} 
                         ref={e => {
-                            if (window.innerWidth < 1600) {
+                            if (document.documentElement.offsetWidth < 1600) {
                                 e && (e.style.width = '23%')
                             }
                         }}
@@ -39,7 +39,7 @@ export default class List extends Component {
         window.addEventListener('resize', () => {
             const list = document.getElementsByClassName(styles.list)
             Array.prototype.forEach.call(list, (e) => {
-                e.style.width = window.innerWidth < 1600 ? '23%' : '18%'
+                e.style.width = document.documentElement.offsetWidth < 1600 ? '23%' : '18%'
             })
         })
     }
